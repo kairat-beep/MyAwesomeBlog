@@ -16,3 +16,4 @@ djangocms-text-ckeditor
 django-sekizai
 django-treebeard
 psycopg2
+whitenoise

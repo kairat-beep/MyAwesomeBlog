@@ -1,5 +1,4 @@
 Django
-mysqlclient
 python-decouple
 netifaces
 netifaces

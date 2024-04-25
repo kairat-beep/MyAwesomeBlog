@@ -15,7 +15,7 @@ import netifaces
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_ROOT = BASE_DIR
+PROJECT_ROOT = os.path.join(BASE_DIR,'django_project')
 #Django CMS needs this. 
 CMS_CONFIRM_VERSION4 = True
 SITE_ID=1
@@ -96,7 +96,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'django_project','templates')],
+        'DIRS': [os.path.join(PROJECT_ROOT,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -188,7 +188,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-# Extra places for collectstatic to find static files.
+# Extra places for collectstatic to find static files.Aaa
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(PROJECT_ROOT, 'static'),
 ]

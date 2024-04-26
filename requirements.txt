@@ -17,3 +17,4 @@ django-sekizai
 django-treebeard
 psycopg2
 whitenoise
+djangocms-frontend

@@ -5,6 +5,10 @@
         {% render_block "css" %}
     </head>
     <body>
+       {% load menu_tags %}
+       <ul>
+           {% show_menu 0 100 100 100 %}
+       </ul>
         {% cms_toolbar %}
         {% placeholder "content" %}
         {% render_block "js" %}

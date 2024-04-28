@@ -22,6 +22,7 @@ CSRF_TRUSTED_ORIGINS =["https://kairat-tech.com",
 #Django CMS needs this. 
 CMS_CONFIRM_VERSION4 = True
 SITE_ID=1
+DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/

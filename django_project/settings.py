@@ -17,8 +17,7 @@ import netifaces
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.join(BASE_DIR,'django_project')
 CSRF_TRUSTED_ORIGINS =["https://kairat-tech.com",
-                       "https://www.kairat-tech.com",
-                       "kairat-tech.com"]
+                       "https://www.kairat-tech.com"]
 
 #Django CMS needs this. 
 CMS_CONFIRM_VERSION4 = True
@@ -51,6 +50,7 @@ ALLOWED_HOSTS = [config('DJANGO_URL')]
 
 INSTALLED_APPS = [
     "djangocms_admin_style",
+    "django.contrib.sitemaps",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

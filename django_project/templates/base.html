@@ -1,6 +1,17 @@
 {% load cms_tags sekizai_tags %}
 <html>
     <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9V91Z7DZ7"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-N9V91Z7DZ7');
+        </script>
+        
         <title>{% page_attribute "page_title" %}</title>
         {% render_block "css" %}
     </head>

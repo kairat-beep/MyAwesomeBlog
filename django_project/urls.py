@@ -17,13 +17,13 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import include, path,re_path
 from . import views
+from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from cms.sitemaps import CMSSitemap
 from django.contrib.sitemaps.views import sitemap
-
-urlpatterns = []
-urlpatterns.append(re_path('^sitemap\.xml$', sitemap,{'sitemaps':{'cmspages': CMSSitemap} }))
-urlpatterns.extend(i18n_patterns(path('admin/', admin.site.urls),
-                               path("", include("cms.urls"))))
-urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+urlpatterns = [re_path(r'^sitemap\.xml$', sitemap,{'sitemaps':{'cmspages': CMSSitemap} }),
+               *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+               *i18n_patterns(re_path(r'admin/', admin.site.urls),re_path(r"blog", include("cms.urls"))),
+               re_path(r'^$|^home/$', TemplateView.as_view(template_name='index.html'), name="home"),
+]

@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     "djangocms_frontend.contrib.media",
     "djangocms_frontend.contrib.tabs",
     "djangocms_frontend.contrib.utilities",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -183,7 +184,7 @@ LANGUAGES = [
 LANGUAGE_CODE = "en"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 CMS_TEMPLATES = [
-    ('base.html', 'Home page template'),
+    ('blog.html', 'Home page template'),
 ]
 THUMBNAIL_HIGH_RESOLUTION = True
 THUMBNAIL_PROCESSORS = (
@@ -193,7 +194,7 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters'
 )
 
-USE_I18N = True
+USE_I18N =True
 
 USE_L10N = True
 

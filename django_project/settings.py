@@ -9,30 +9,22 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-from decouple import config
+
 import os
 import netifaces
-
+from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.join(BASE_DIR,'django_project')
-CSRF_TRUSTED_ORIGINS =["https://kairat-tech.com",
-                       "https://www.kairat-tech.com"]
-
-#Django CMS needs this. 
-CMS_CONFIRM_VERSION4 = True
-SITE_ID=1
-DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
+CSRF_TRUSTED_ORIGINS =[config('DJANGO_URL_CRSF')]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('DJANGO_SECRET_KEY') 
-
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if config('DJANGO_DEBUG') == 'y' else  False
-
 # Find out what the IP addresses are at run time
 # This is necessary because otherwise Gunicorn will reject the connections
 def ip_addresses():
@@ -46,51 +38,14 @@ def ip_addresses():
 
 ALLOWED_HOSTS = [config('DJANGO_URL')]
 
-
 # Application definition
-
 INSTALLED_APPS = [
-    "djangocms_admin_style",
-    "django.contrib.sitemaps",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'cms',
-    'menus',
-    'sekizai',
-    'treebeard',
-    "djangocms_versioning",
-    "djangocms_alias",
-    "djangocms_file",
-    "djangocms_picture",
-    "djangocms_video",
-    "djangocms_googlemap",
-    "djangocms_snippet",
-    "djangocms_style",
-    'filer',
-    'easy_thumbnails',
-    'djangocms_text_ckeditor',
-    "djangocms_frontend",
-    "djangocms_frontend.contrib.accordion",
-    "djangocms_frontend.contrib.alert",
-    "djangocms_frontend.contrib.badge",
-    "djangocms_frontend.contrib.card",
-    "djangocms_frontend.contrib.carousel",
-    "djangocms_frontend.contrib.collapse",
-    "djangocms_frontend.contrib.content",
-    "djangocms_frontend.contrib.grid",
-    "djangocms_frontend.contrib.image",
-    "djangocms_frontend.contrib.jumbotron",
-    "djangocms_frontend.contrib.link",
-    "djangocms_frontend.contrib.listgroup",
-    "djangocms_frontend.contrib.media",
-    "djangocms_frontend.contrib.tabs",
-    "djangocms_frontend.contrib.utilities",
-    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -101,14 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    #Django CMS needs this
-    "django.middleware.locale.LocaleMiddleware",  # not installed by default
-    "cms.middleware.user.CurrentUserMiddleware",
-    "cms.middleware.page.CurrentPageMiddleware",
-    "cms.middleware.toolbar.ToolbarMiddleware",
-    "cms.middleware.language.LanguageCookieMiddleware",
-
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -116,7 +63,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_ROOT,'templates')],
+        'DIRS': [os.path.join(PROJECT_ROOT,'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,10 +71,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.template.context_processors.i18n",
-                "sekizai.context_processors.sekizai",
-                "cms.context_processors.cms_settings"
-
             ],
         },
     },
@@ -138,7 +81,6 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -151,6 +93,7 @@ DATABASES = {
 }
 if config('DJANGO_DEBUG') != 'y':
     DATABASES['default']['OPTIONS']= {'sslmode': 'require'}
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -177,24 +120,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-#Djanco CMS needs below language codes
-LANGUAGES = [
-    ("en", "English"),
-]
-LANGUAGE_CODE = "en"
-X_FRAME_OPTIONS = "SAMEORIGIN"
-CMS_TEMPLATES = [
-    ('blog.html', 'Home page template'),
-]
-THUMBNAIL_HIGH_RESOLUTION = True
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters'
-)
-
-USE_I18N =True
+USE_I18N = True
 
 USE_L10N = True
 
@@ -207,7 +133,3 @@ MEDIA_URL = "/media/"
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
-# Extra places for collectstatic to find static files.Aaa
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'static_app_assets'),
-]

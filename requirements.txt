@@ -4,3 +4,4 @@ netifaces
 psycopg2
 whitenoise
 django-extensions
+wagtail

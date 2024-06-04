@@ -18,6 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.join(BASE_DIR,'django_project')
 CSRF_TRUSTED_ORIGINS =[config('DJANGO_URL_CRSF')]
 
+WAGTAIL_SITE_NAME = 'Just Another Blogger'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -37,7 +39,8 @@ def ip_addresses():
     return ip_list
 
 ALLOWED_HOSTS = [config('DJANGO_URL')]
-
+WAGTAILADMIN_BASE_URL = config('DJANGO_URL')
+WAGTAILDOCS_EXTENSIONS = ['csv','txt' ]
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,6 +49,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+    'modelcluster',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'django_project.urls'

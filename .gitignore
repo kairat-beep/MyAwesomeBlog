@@ -3,10 +3,12 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-static
-media
-migrations/
-!migrations/__init__.py
+static/
+media/
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+!**/__init__.py
 # C extensions
 
 *.so

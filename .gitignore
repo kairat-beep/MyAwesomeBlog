@@ -5,8 +5,8 @@ __pycache__/
 *.py[cod]
 static
 media
-migrations
-__init__.py
+migrations/
+!migrations/__init__.py
 # C extensions
 
 *.so

@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 {% load wagtailcore_tags %}
-{% block body_class %}Blog archive{% endblock %}
-<h1>{{ page.title }}</h1>
-<div class="intro">{{ page.TLTR|richtext }}</div>
-{% for post in page.get_children %}
-    <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-    {{ post.specific.body|richtext }}
+<div class="position-relative overflow-hidden p-1 text-center bg-light">
+      <div class="col-5 p-2 mx-auto my-1">
+        <h1 class="display-4 font-weight-normal">Blog Archive</h1>
+        <p class="lead font-weight-normal">Topics categorized by tags</p>
+        <a class="btn btn-outline-secondary" href="{{request.path}}">Reset Search Query</a>
+      </div>
+      <div class="product-device box-shadow d-none d-md-block"></div>
+      <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+</div>
+    
+{% for entry in blog_entries %}
+<section class='container-md'>
+    <h2><a href="{% pageurl entry %}">{{ entry.title }}</a></h2>
+    {{ entry.TLTR|richtext }}
+    <ul style='list-style-type: none'>
+        {% for tag in entry.tags.all%}
+        <li style='display: inline' >
+            <a  href='{{request.path}}?tag={{tag}}'>
+                <span class='badge badge-primary badge rounded-pill bg-primary'>
+                    {{tag}}
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endfor %}
-{{ page.body|richtext }}
 
 {% endblock %}

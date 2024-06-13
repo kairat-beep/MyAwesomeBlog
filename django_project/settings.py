@@ -41,6 +41,7 @@ def ip_addresses():
 ALLOWED_HOSTS = [config('DJANGO_URL')]
 WAGTAILADMIN_BASE_URL = config('DJANGO_URL')
 WAGTAILDOCS_EXTENSIONS = ['csv','txt' ]
+TAGGIT_CASE_INSENSITIVE = True
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -60,8 +61,8 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail',
-    'modelcluster',
     'taggit',
+    'modelcluster',
     'blog',
     'post',
 ]

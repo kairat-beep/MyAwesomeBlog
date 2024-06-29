@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'blog',
     'post',
+    'axes',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+
+    # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
+    # It only formats user lockout messages and renders Axes lockout responses
+    # on failed user authentication attempts from login views.
+    # If you do not want Axes to override the authentication response
+    # you can skip installing the middleware and use your own views.
+    'axes.middleware.AxesMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
+    'django.contrib.auth.backends.ModelBackend'
+]
+
 
 ROOT_URLCONF = 'django_project.urls'
 

@@ -7,3 +7,4 @@ django-extensions
 wagtail
 django-taggit
 django-modelcluster
+django-axes[ipware]

@@ -8,3 +8,7 @@ wagtail
 django-taggit
 django-modelcluster
 django-axes[ipware]
+pre-commit
+black
+isort
+flake8

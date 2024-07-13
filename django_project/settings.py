@@ -134,23 +134,19 @@ if config("DJANGO_DEBUG") != "y":
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
+_DJANGO_CONTRIB_AUTH = "django.contrib.auth.password_validation."
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation"
-                ".UserAttributeSimilarityValidator",
+        "NAME": _DJANGO_CONTRIB_AUTH + "UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation"
-                ".MinimumLengthValidator",
+        "NAME": _DJANGO_CONTRIB_AUTH + "MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation"
-                ".CommonPasswordValidator",
+        "NAME": _DJANGO_CONTRIB_AUTH + "CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation"
-                ".NumericPasswordValidator",
+        "NAME": _DJANGO_CONTRIB_AUTH + "NumericPasswordValidator",
     },
 ]
 
@@ -171,6 +167,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+STATICFILES_DIRS = [
+    BASE_DIR + "/blog/static",
+    BASE_DIR + "/post/static",
+]
+
 MEDIA_URL = "/media/"
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")

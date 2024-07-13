@@ -3,12 +3,14 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-static/
+django_project/static/
 media/
+django_project/static
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
 !**/__init__.py
+
 # C extensions
 
 *.so
@@ -68,4 +70,3 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-

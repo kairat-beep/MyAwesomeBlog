@@ -1,11 +1,13 @@
 # Wagtail
 from django.db import models
+from django.utils import timezone
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import Page
+from wagtail.search import index
 
 
 class PageTag(TaggedItemBase):
@@ -22,11 +24,19 @@ class PostPage(Page):
     TLTR = RichTextField(blank=True)
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=PageTag, blank=True)
+    date = models.DateTimeField(default=timezone.now, blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("TLTR"),
         FieldPanel("body"),
         FieldPanel("tags"),
+        FieldPanel("date"),
+    ]
+
+    # Search index configuration
+    search_fields = Page.search_fields + [
+        index.SearchField("body"),
+        index.FilterField("date"),
     ]
 
     class Meta:

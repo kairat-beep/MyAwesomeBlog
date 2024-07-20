@@ -1,15 +1,19 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
 {% load wagtailcore_tags %}
 {% block body_class %}{% endblock %}
-<h1>{{ page.title }}</h1>
-<div class="intro">{{ page.TLTR|richtext }}</div>
-{% for post in page.get_children %}
-    <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-    {{ post.specific.body|richtext }}
-{% endfor %}
-{{ page.body|richtext }}
-
+<div class="container">
+    <div class="jumbotron">
+            <h1 class="display-4">{{ page.title }}</h1>
+            <h4 class="display-8">{{ page.TLTR|richtext }}</h4>
+            <h4 class="display-8">Publication date:{{page.date|date:"H:i M d, Y"}}</h4>
+    </div>
+    <hr class="divider">
+    <div class="container">
+        {{ page.body|richtext }}
+    </div>
+    <i>Latest Update:{{page.last_published_at|date:"M d, Y"}}</i>
+</div>
 {% endblock %}

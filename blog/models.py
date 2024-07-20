@@ -27,8 +27,7 @@ class BlogPage(Page):
         context = super().get_context(request)
 
         # Get blog entries
-        blog_entries = PostPage.objects.child_of(self).live()
-
+        blog_entries = PostPage.objects.child_of(self).order_by("-date").live()
         # Filter by tag
         tag = request.GET.get("tag")
         if tag:

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="container mt-5">
+            <h3 class="text-center">Thanks for contacting, {{message}}</h1>
+            <p class="text-center mt-5">Looking forward to connecting with you!</p>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

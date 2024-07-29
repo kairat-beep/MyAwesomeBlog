@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "blog",
     "post",
     "axes",
+    "contact",
 ]
 
 MIDDLEWARE = [
@@ -171,7 +172,7 @@ STATICFILES_DIRS = [
     BASE_DIR + "/blog/static",
     BASE_DIR + "/post/static",
 ]
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 MEDIA_URL = "/media/"
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")

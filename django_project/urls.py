@@ -18,18 +18,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import TemplateView as TV
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from . import views
+from contact.views import ContactMessageView as contact_views
+
+from . import views as base_views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", base_views.index, name="index"),
     path("admin/", admin.site.urls),
     path("admin-blog/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("blog/", include(wagtail_urls)),
+    path("contact/", contact_views.as_view(), name="contact"),
+    path("contact/thanks", TV.as_view(template_name="contact/thanks.html")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

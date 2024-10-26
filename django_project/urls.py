@@ -21,6 +21,7 @@ from django.urls import include, path
 from django.views.generic import TemplateView as TV
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
 from contact.views import ContactMessageView as contact_views
@@ -28,6 +29,7 @@ from contact.views import ContactMessageView as contact_views
 from . import views as base_views
 
 urlpatterns = [
+    path("sitemap.xml", sitemap),
     path("", base_views.index, name="index"),
     path("admin/", admin.site.urls),
     path("admin-blog/", include(wagtailadmin_urls)),
@@ -35,6 +37,7 @@ urlpatterns = [
     path("blog/", include(wagtail_urls)),
     path("contact/", contact_views.as_view(), name="contact"),
     path("contact/thanks", TV.as_view(template_name="contact/thanks.html")),
+    path("cookies", TV.as_view(template_name="cookies.html")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

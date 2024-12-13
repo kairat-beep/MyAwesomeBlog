@@ -44,4 +44,11 @@ isort .
 flake8 .
 ```
 
+# Backup
+```
+pg_dump -U django -W -d django -h localhost > outfile
+scp -r root@website:/home/django/outfile . #website is in a profile ssh config file
+scp -r root@website:/home/django/django_project/django_project/{static,media} .
+```
+
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)

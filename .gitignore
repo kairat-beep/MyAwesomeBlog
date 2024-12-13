@@ -5,6 +5,7 @@ __pycache__/
 *.py[cod]
 django_project/static/
 media/
+backup/
 django_project/static
 **/migrations/**
 !**/migrations

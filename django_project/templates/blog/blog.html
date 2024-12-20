@@ -19,11 +19,7 @@
     <ul style='list-style-type: none'>
         {% for tag in entry.tags.all%}
         <li style='display: inline' >
-            <a  href='{{request.path}}?tag={{tag}}'>
-                <span class='badge badge-primary badge rounded-pill bg-primary'>
-                    {{tag}}
-                </span>
-            </a>
+            <a href='{{request.path}}?tag={{tag}}'><span class='badge badge-primary badge rounded-pill bg-primary'>{{tag}}</span></a>
         </li>
         {% endfor %}
     </ul>

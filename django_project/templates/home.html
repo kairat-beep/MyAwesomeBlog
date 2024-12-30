@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
+
+{% block assets %}
+    {% load static %}
+    <link rel="stylesheet" type='text/css' href="{% static 'intro.css' %}">
+    <script type="text/javascript" src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script type="text/javascript" src="{% static 'intro.js' %}"></script>
+{% endblock %}
+
 {% block content %}
-
-    <!-- Intro Section -->
-    <header class="content-section bg-light" id='into'>
-        <div class="mb-5 mt-3 p-5 container">
-            <div class="row text-center">
-                <h2 >Welcome to my blog!</h2>
-                <p class='lead'>In short: I post interesting topics about CS/Mathematics/Electrical Engineering.</p>
-            </div>
-        </div>
-    </header>
-
     <!-- About Section -->
-    <section class="content-section bg-light" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>About Me</h2>
-                    <p class="lead">I'm a Computer Scientist, Wannabe One.<p>
-                    <p>That is pretty much it about me.</p>
-                </div>
-            </div>
+    <div id="outer">
+      <div class="terminal">
+        <div class="title-bar">
+          <div class="software-name">
+            <span>tmux </span> </br>
+            <span> /tmp/secret </span>
+          </div>
+          <div class="buttons">
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+          </div>
         </div>
-    </section>
+        <div class="cli">
+          <div id='prompt1'>
+            <p class="user">kairat@fedora:~$ <span id="type1" class='command'></span></p>
+            <p class = 'd-none' id='type1_response'>Welcome to my blog!</br>I post interesting topics about CS/Mathematics/Electrical Engineering.</br></p>
+          </div>
+          <div id='prompt2' class="d-none" >
+              <p class="user">kairat@fedora:~$ <span id="type2" class='command'></span></p>
+              <p id='type2_response' class = 'd-none'>The answer to the ultimate question of life, the universe, and everything is 42</p>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

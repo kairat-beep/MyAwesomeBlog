@@ -1,0 +1,74 @@
+#outer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    max-height: 100vh;
+}
+.terminal{
+    width: 80%;
+    max-width: 800px;
+    background-color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: #00ff00;
+    height: 270px;
+}
+
+.terminal .title-bar {
+    background-color:#6c757d;
+    height: 55px;
+    color: #fff; 
+    font-size: 14px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.terminal .title-bar .software-name{ 
+    flex: 0 1 auto; 
+    /* new */ 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.terminal .title-bar .buttons {
+    width: auto;
+    display: flex;
+    gap: 5px;
+    margin-left:auto;
+    padding-right:10px;
+}
+
+.terminal .title-bar .button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #f00;
+}
+
+.terminal .title-bar .button:nth-child(2) {
+    background-color: #ff0;
+}
+
+.terminal .title-bar .button:nth-child(3) {
+    background-color: #0f0;
+}
+
+.terminal .cli { 
+    padding-top:5px;
+    font-size: 14px; 
+    padding-left:4px;
+}
+  
+.terminal .cli .user {
+    color: #6ee; 
+}
+
+.terminal .command {
+    flex: 1; 
+    color: #ddd;
+}

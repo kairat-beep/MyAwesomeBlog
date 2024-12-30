@@ -3,7 +3,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-django_project/static/
 media/
 backup/
 django_project/static
@@ -11,7 +10,8 @@ django_project/static
 !**/migrations
 !**/migrations/__init__.py
 !**/__init__.py
-
+!django_project/static/base/*.css
+!django_project/static/base/*.js
 # C extensions
 
 *.so

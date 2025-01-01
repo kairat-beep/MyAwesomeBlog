@@ -18,7 +18,7 @@ from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.join(BASE_DIR, "django_project")
-CSRF_TRUSTED_ORIGINS = [config("DJANGO_URL_CRSF")]
+CSRF_TRUSTED_ORIGINS = config("DJANGO_URL_CRSF").split(",")
 
 WAGTAIL_SITE_NAME = "Just Another Blogger"
 
@@ -44,6 +44,10 @@ def ip_addresses():
 
 
 ALLOWED_HOSTS = [config("DJANGO_URL")]
+if not DEBUG:
+    ALLOWED_HOSTS.extend(ip_addresses())
+
+
 WAGTAILADMIN_BASE_URL = config("DJANGO_URL")
 WAGTAILDOCS_EXTENSIONS = ["csv", "txt"]
 TAGGIT_CASE_INSENSITIVE = True

@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     "axes",
     "contact",
     "django.contrib.sitemaps",
+    "silk",
 ]
 
 MIDDLEWARE = [
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'silk.middleware.SilkyMiddleware',
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
     # It only formats user lockout messages and renders Axes lockout responses
@@ -95,6 +97,13 @@ MIDDLEWARE = [
     # you can skip installing the middleware and use your own views.
     "axes.middleware.AxesMiddleware",
 ]
+
+#Silky Configs
+SILKY_MAX_RECORDED_REQUESTS = 10**4
+SILKY_MAX_RECORDED_REQUESTS_CHECK_PERCENT = 10
+SILKY_INTERCEPT_PERCENT = 50
+SILKY_AUTHENTICATION = True  # User must login
+SILKY_AUTHORISATION = True  # User must have permissions
 
 AUTHENTICATION_BACKENDS = [
     "axes.backends.AxesStandaloneBackend",

@@ -39,5 +39,7 @@ urlpatterns = [
     path("contact/thanks", TV.as_view(template_name="contact/thanks.html")),
     path("cookies", TV.as_view(template_name="cookies.html")),
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

@@ -8,7 +8,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 from wagtail.search import index
-
+from django.db.models import F
 
 class PageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -25,6 +25,7 @@ class PostPage(Page):
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=PageTag, blank=True)
     date = models.DateTimeField(default=timezone.now, blank=True)
+    view_count = models.PositiveBigIntegerField(default=0, db_index=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("TLTR"),
@@ -42,3 +43,8 @@ class PostPage(Page):
     class Meta:
         verbose_name = "Post Page"
         verbose_name_plural = "Post Pages"
+
+    def serve(self, request):
+        # Increment the visit count
+        PostPage.objects.filter(pk=self.pk).update(view_count=F('view_count') + 1)
+        return super().serve(request)

@@ -2,7 +2,8 @@ from taggit.models import Tag
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
-
+from wagtail import hooks
+from post.models import PostPage
 
 class TagsSnippetViewSet(SnippetViewSet):
     panels = [FieldPanel("name")]  # only show the name field
@@ -13,6 +14,5 @@ class TagsSnippetViewSet(SnippetViewSet):
     menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
     list_display = ["name", "slug"]
     search_fields = ("name",)
-
 
 register_snippet(TagsSnippetViewSet)

@@ -1,5 +1,6 @@
 # Wagtail
 from django.db import models
+from django.db.models import F
 from django.utils import timezone
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
@@ -8,7 +9,6 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 from wagtail.search import index
-from django.db.models import F
 
 
 class PageTag(TaggedItemBase):

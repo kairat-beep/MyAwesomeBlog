@@ -10,6 +10,7 @@ from wagtail.models import Page
 from wagtail.search import index
 from django.db.models import F
 
+
 class PageTag(TaggedItemBase):
     content_object = ParentalKey(
         "post.PostPage", on_delete=models.CASCADE, related_name="tagged_items"
@@ -46,5 +47,5 @@ class PostPage(Page):
 
     def serve(self, request):
         # Increment the visit count
-        PostPage.objects.filter(pk=self.pk).update(view_count=F('view_count') + 1)
+        PostPage.objects.filter(pk=self.pk).update(view_count=F("view_count") + 1)
         return super().serve(request)

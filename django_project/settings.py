@@ -88,7 +88,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'silk.middleware.SilkyMiddleware',
+    "silk.middleware.SilkyMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
     # It only formats user lockout messages and renders Axes lockout responses
@@ -98,7 +98,7 @@ MIDDLEWARE = [
     "axes.middleware.AxesMiddleware",
 ]
 
-#Silky Configs
+# Silky Configs
 SILKY_MAX_RECORDED_REQUESTS = 10**4
 SILKY_MAX_RECORDED_REQUESTS_CHECK_PERCENT = 10
 SILKY_INTERCEPT_PERCENT = 50

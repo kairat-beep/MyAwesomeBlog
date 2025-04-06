@@ -105,6 +105,10 @@ SILKY_INTERCEPT_PERCENT = 50
 SILKY_AUTHENTICATION = True  # User must login
 SILKY_AUTHORISATION = True  # User must have permissions
 
+
+AXES_FAILURE_LIMIT = 3  # Default: 3 failed attempts before blocking
+AXES_COOLOFF_TIME = 1  # Time in hours to wait before retrying
+
 AUTHENTICATION_BACKENDS = [
     "axes.backends.AxesStandaloneBackend",
     "django.contrib.auth.backends.ModelBackend",

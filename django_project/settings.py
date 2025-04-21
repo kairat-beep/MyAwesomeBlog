@@ -43,7 +43,7 @@ def ip_addresses():
     return ip_list
 
 
-ALLOWED_HOSTS = [config("DJANGO_URL")]
+ALLOWED_HOSTS = ip_addresses() + [config("DJANGO_URL")]
 if not DEBUG:
     ALLOWED_HOSTS.extend(ip_addresses())
 

@@ -138,7 +138,7 @@ ROOT_URLCONF = "django_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(PROJECT_ROOT, "templates")],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -200,7 +200,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -214,13 +213,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATICFILES_DIRS = [
-    BASE_DIR + "/blog/static",
-    BASE_DIR + "/post/static",
+    os.path.join(BASE_DIR , "static"),
 ]
+
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 MEDIA_URL = "/media/"
 STATIC_URL = "/static/"

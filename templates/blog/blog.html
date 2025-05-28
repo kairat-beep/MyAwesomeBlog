@@ -2,16 +2,13 @@
 
 {% block content %}
 {% load wagtailcore_tags %}
-<div class="position-relative overflow-hidden p-1 text-center bg-light">
-      <div class="col-5 p-2 mx-auto my-1">
-        <h1 class="display-4 font-weight-normal">Blog Archive</h1>
-        <p class="lead font-weight-normal">Topics categorized by tags</p>
-        <a class="btn btn-outline-secondary" href="{{request.path}}">Reset Search Query</a>
-      </div>
-      <div class="product-device box-shadow d-none d-md-block"></div>
-      <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+<div class="position-relative overflow-hidden p-3 p-md-5 text-center">
+  <div class="col-lg-6 mx-auto">
+    <h1 class="display-4 fw-normal">Blog Archive</h1>
+    <p class="lead fw-normal">Topics categorized by tags</p>
+    <a class="btn btn-outline-secondary" href="{{ request.path }}">Reset Search Query</a>
+  </div>
 </div>
-    
 {% for entry in blog_entries %}
 <section class='container-md'>
     <h2><a href="{% pageurl entry %}">{{ entry.title }}</a></h2>

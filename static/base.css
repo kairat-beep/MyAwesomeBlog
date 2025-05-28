@@ -1,0 +1,58 @@
+* {
+	font-family: "Overpass Mono", monospace;
+}
+
+.navbar .nav-link {
+  color: #212529;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar, .navbar-brand, footer {
+  font-size:30px;
+  background-color: #f8f9fa
+}
+
+.navbar .nav-link:hover {
+  background-color:#9999a8;
+  color: #343a40; 
+  text-decoration: none;
+}
+:root {
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-primary-rgb: 13, 110, 253;
+  --bd-accent-rgb: 214, 51, 132;
+  --bd-violet-rgb: 111, 66, 193;
+  --bd-pink-rgb: 255, 192, 203;
+}
+
+main {
+  background-image: linear-gradient(180deg,rgba(var(--bs-body-bg-rgb),.01),rgba(var(--bs-body-bg-rgb),.1) 50%),radial-gradient(ellipse at top left,rgba(var(--bs-primary-rgb),.5),transparent 50%),radial-gradient(ellipse at top right,rgba(var(--bd-accent-rgb),.5),transparent 40%),radial-gradient(ellipse at center right,rgba(var(--bd-violet-rgb),.5),transparent 50%),radial-gradient(ellipse at center left,rgba(var(--bd-pink-rgb),.6),transparent 60%);
+}
+
+footer, nav {
+  background-color:#f8f9fa;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* allow full viewport, but can grow */
+}
+
+nav {
+  height: auto;
+}
+
+main {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  flex-grow: 1;
+  min-height: 100%;
+}
+
+footer {
+  height: 80px;
+}

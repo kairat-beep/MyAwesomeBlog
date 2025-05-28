@@ -1,23 +1,23 @@
 window.onload = function () {
   function show_second_prompt() {
-    new Typed("#type2", {
+    new Typed("#prompt2-input", {
       strings: ["./a.out"],
       typeSpeed: 80,
       onComplete: (self) => {
         setTimeout(() => {
-          $("#type2_response").toggleClass("d-none");
+          $("#prompt2-response").toggleClass("invisible");
           self.cursor.innerHTML = "";
         }, 500);
       }
     });
   }
-  var typed = new Typed("#type1", {
+  var typed = new Typed("#prompt1-input", {
     strings: ["make all"],
     typeSpeed: 80,
     onComplete: (self) => {
       setTimeout(() => {
-        $("#type1_response").toggleClass("d-none");
-        $("#prompt2").toggleClass("d-none");
+        $("#prompt1-response").toggleClass("invisible");
+        $("#prompt2").toggleClass("invisible");
         self.cursor.innerHTML = "";
         show_second_prompt();
       }, 400);

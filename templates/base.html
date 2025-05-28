@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kairat Tech</title>
+    <title>Kairat-Tech</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {% load static %}
     {% block assets %} {% endblock %}
 </head>
-<body class='pb-5 mb-3 bg-gradient bg-light'>
+<body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg  bg-secondary text-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid px-3">
-            <a class="navbar-brand" href="/">Kairat Tech</a>
+            <a class="navbar-brand" href="/">Kairat-Tech</a>
             <button class="navbar-toggler ms-auto" type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarNav"
@@ -21,8 +21,8 @@
                         aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon "></span>
             </button>
-            <div class="collapse navbar-collapse  flex-column align-items-end mt-2" id="navbarNav">
-                <ul class="navbar-nav text-end">
+            <div class="collapse navbar-collapse  flex-column align-items-end m-2" id="navbarNav">
+                <ul class="navbar-nav text-end d-flex gap-3">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
@@ -31,17 +31,17 @@
             </div>
         </div>
     </nav>
-   <main class="mb-4">
+   <main>
        {% block content %} {% endblock %}
    </main>
     <!-- Footer -->
-    <footer class="fixed-bottom footer bg-secondary text-white py-3 user-select-none">
-        <div class="container text-center text-dark">
-            <p>&copy; 2025 KairatTech. No Rights Reserved!</p>
+    <footer class="container-fluid d-flex justify-content-center align-items-center user-select-none">
+        <div class="text-center">
+            <p>&copy; 2025 Kairat-Tech. No Rights Reserved!</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <link rel="stylesheet" href="{% static 'blog.css'%}"/>
+    <link rel="stylesheet" href="{% static 'base.css'%}"/>
 </body>
 </html>

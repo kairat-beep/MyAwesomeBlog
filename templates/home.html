@@ -2,14 +2,14 @@
 
 {% block assets %}
     {% load static %}
-    <link rel="stylesheet" type='text/css' href="{% static 'intro.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'home_intro.css' %}">
+    <script type="text/javascript" src="{% static 'home_intro.js' %}"></script>
     <script type="text/javascript" src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script type="text/javascript" src="{% static 'intro.js' %}"></script>
 {% endblock %}
 
 {% block content %}
     <!-- About Section -->
-    <div id="outer">
+    <div class="terminal-outer">
       <div class="terminal">
         <div class="title-bar">
           <div class="software-name">
@@ -24,12 +24,12 @@
         </div>
         <div class="cli">
           <div id='prompt1'>
-            <p class="user">kairat@fedora:~$ <span id="type1" class='command'></span></p>
-            <p class = 'd-none' id='type1_response'>Welcome to my blog!</br>I post interesting topics about CS/Mathematics/Electrical Engineering.</br></p>
+            <p class="user">kairat@fedora:~$ <span id="prompt1-input" class='command'></span></p>
+            <p id='prompt1-response' class = 'invisible' >Welcome to my blog!</br>I post interesting topics about CS/Mathematics/Electrical Engineering.</br></p>
           </div>
-          <div id='prompt2' class="d-none" >
-              <p class="user">kairat@fedora:~$ <span id="type2" class='command'></span></p>
-              <p id='type2_response' class = 'd-none'>The answer to the ultimate question of life, the universe, and everything is 42</p>
+          <div id='prompt2' class="invisible" >
+             <p class="user">kairat@fedora:~$ <span id="prompt2-input" class='command'></span></p>
+             <p id='prompt2-response' class = 'invisible'>The answer to the ultimate question of life, the universe, and everything is 42</p>
           </div>
         </div>
       </div>

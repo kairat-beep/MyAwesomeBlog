@@ -18,17 +18,17 @@ from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.join(BASE_DIR, "django_project")
-CSRF_TRUSTED_ORIGINS = config("DJANGO_URL_CRSF").split(",")
+CSRF_TRUSTED_ORIGINS = config("URL_CRSF").split(",")
 
-WAGTAIL_SITE_NAME = "Just Another Blogger"
+WAGTAIL_SITE_NAME = "Kairat's blog"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("DJANGO_SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if config("DJANGO_DEBUG") == "y" else False
+DEBUG = config("DEBUG", default = False, cast = bool)
 
 
 # Find out what the IP addresses are at run time
@@ -43,12 +43,12 @@ def ip_addresses():
     return ip_list
 
 
-ALLOWED_HOSTS = ip_addresses() + [config("DJANGO_URL")]
-if not DEBUG:
+ALLOWED_HOSTS =  [config("URL")]
+if DEBUG:
     ALLOWED_HOSTS.extend(ip_addresses())
 
 
-WAGTAILADMIN_BASE_URL = config("DJANGO_URL")
+WAGTAILADMIN_BASE_URL = config("URL")
 WAGTAILDOCS_EXTENSIONS = ["csv", "txt"]
 TAGGIT_CASE_INSENSITIVE = True
 # Application definition
@@ -159,20 +159,20 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": config("DJANGO_POSTGRESS"),
-        "USER": config("DJANGO_POSTGRESS_USER"),
-        "PASSWORD": config("DJANGO_POSTGRESS_PASS"),
-        "HOST": "localhost",
+        "NAME": config("POSTGRES_DB"),
+        "USER": config("POSTGRES_USER"),
+        "PASSWORD": config("POSTGRES_PASSWORD"),
+        "HOST": config("POSTGRES_HOST"), 
         "PORT": "5432",
     }
 }
-if config("DJANGO_DEBUG") != "y":
+if not DEBUG: 
     DATABASES["default"]["OPTIONS"] = {"sslmode": "require"}
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/django",
+        "LOCATION": f"redis://{config('REDIS_HOST')}:6379/django",
         # for django-redis < 3.8.0, use:
         # 'LOCATION': '127.0.0.1:6379',
         "OPTIONS": {

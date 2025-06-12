@@ -1,7 +1,7 @@
 Django
 python-decouple
 netifaces
-#psycopg2      NEED TO COMPILE FOR SPECIFIC OS. Differs and throws an error if just pip.
+psycopg2-binary
 whitenoise
 django-extensions
 wagtail

@@ -2,18 +2,26 @@
 The template for my personal blog at kairat-tech.com
 
 # Environment
-
-Install **PostgreSQL**
-* Django monolith. Should be installed on the instance.
-
-Install **Redis**. Can be turned off in Settings.py: **Remove Cache** code block.
+Digital Ocean Hosting ~6$.
 * [Ubuntu Web Server](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04) , the default Digital Ocean droplet.
-*  [Docker](https://hub.docker.com/_/redis) for the development environment.
-```
-docker run --name django-redis -p  6379:6379 -d redis
-```
+* * Install **PostgreSQL**
+* * Install **Redis**. Can be turned off in Settings.py: **Remove Cache** code block.
+
+Docker version
+*  [Docker Web](https://hub.docker.com/layers/library/python/3.13-slim/images/sha256-8bc85201ccb77449e1c0ec24b5caeaf343a3842da11c3a6921afc5c196170791) is python-3.13.slim for the development environment.
+*  [Docker Postgres](https://hub.docker.com/_/postgres) for the development environment.
+*  [Docker Redis](https://hub.docker.com/_/redis) for the development environment.
 
 # Installation
+## Local Environment
+Generates .env file with keys for local development. The script starts Python slim, Redis, and Postgres docker images. Postgres uses volumes to preserve the state.
+```
+chmod +x run.sh run_django.sh
+./run.sh
+```
+
+## Deployment. 2Gb is required for docker deployment.
+Reuse the .env file generated in development version
 [Follow Instructions for HTTPS-Certbot](https://certbot.eff.org/instructions?ws=nginx&os=snap)
 ```
 git clone https://github.com/kairat-beep/MyAwesomeBlog.git
@@ -37,7 +45,7 @@ PID=$(systemctl show --value -p MainPID gunicorn.service)
 
 **Pre-Commit** python package is used. Format as needed.
 Follow Python coding convention.
-Fix errors if found`
+Fix errors if found
 ```
 black .
 isort .
@@ -46,12 +54,10 @@ flake8 .
 
 # Backup and Docker DB
 ```
-pg_dump -U django -W -d django -h localhost > outfile
+docker exec db pg_dump -U django -W -d django -h db > outfile
 scp -r root@website:/home/django/outfile . #website is in a profile ssh config file
 scp -r root@website:/home/django/django_project/django_project/{static,media} .
-docker run --name gredis -p 6379:6379 -d  redis redis-server --save 60 1 --loglevel warning
-docker run --name  gpostgres -p 5432:5432  -e POSTGRES_PASSWORD="PASSWORD" -e POSTGRES_USER="django" -d postgres
-docker exec -i gpostgres psql -U django -d django -e POSTGRES_PASSWORD="PASSWORD" < backup/output
+docker exec -i db psql -U django -d django -e POSTGRES_PASSWORD="PASSWORD_GOES_HERE" < backup/output
 ```
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)

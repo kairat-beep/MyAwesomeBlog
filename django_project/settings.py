@@ -28,7 +28,7 @@ WAGTAIL_SITE_NAME = "Kairat's blog"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default = False, cast = bool)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 
 # Find out what the IP addresses are at run time
@@ -43,7 +43,7 @@ def ip_addresses():
     return ip_list
 
 
-ALLOWED_HOSTS =  [config("URL")]
+ALLOWED_HOSTS = [config("URL")]
 if DEBUG:
     ALLOWED_HOSTS.extend(ip_addresses())
 
@@ -162,11 +162,11 @@ DATABASES = {
         "NAME": config("POSTGRES_DB"),
         "USER": config("POSTGRES_USER"),
         "PASSWORD": config("POSTGRES_PASSWORD"),
-        "HOST": config("POSTGRES_HOST"), 
+        "HOST": config("POSTGRES_HOST"),
         "PORT": "5432",
     }
 }
-if not DEBUG: 
+if not DEBUG:
     DATABASES["default"]["OPTIONS"] = {"sslmode": "require"}
 
 CACHES = {
@@ -216,7 +216,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR , "static"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"

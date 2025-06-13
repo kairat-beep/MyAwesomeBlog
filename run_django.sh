@@ -1,11 +1,10 @@
 #!/bin/bash
 . .env
 # Wait until Postgres is ready
-sleep 5
-#until pg_isready -h db -p 5432 -U myuser; do
-#  echo "Waiting for PostgreSQL to be ready..."
-#  sleep 1
-#done
+echo "Waiting for PostgreSQL to be ready..."
+until pg_isready -h db -p 5432 -U django; do
+  sleep 1
+done
 echo "Postgres is ready!"
 python manage.py makemigrations --noinput
 python manage.py migrate --noinput

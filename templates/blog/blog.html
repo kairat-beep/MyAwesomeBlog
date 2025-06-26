@@ -2,12 +2,23 @@
 
 {% block content %}
 {% load wagtailcore_tags %}
-<div class="position-relative overflow-hidden p-3 p-md-5 text-center">
-  <div class="col-lg-6 mx-auto">
-    <h1 class="display-4 fw-normal">Blog Archive</h1>
-    <p class="lead fw-normal">Topics categorized by tags</p>
-    <a class="btn btn-outline-secondary" href="{{ request.path }}">Reset Search Query</a>
-  </div>
+<div class="container mt-5">
+	<h1 class="display-6 ">Blog Archive </h1>
+	<div> 
+		<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#tags" aria-expanded="false" aria-controls="All Tags">Topics</button>
+		<div id="tags" class="collapse">
+		    <ul style='list-style-type: none'>
+			{% for tag in tags%}
+			<li style='display: inline' >
+			    <a href='{{request.path}}?tag={{tag}}'><span class='badge badge-primary rounded-pill bg-primary'>{{tag.name}}</span></a>
+			</li>
+			{% endfor %}
+		    </ul>
+		</div>
+		{% if 'tag' in request.get_full_path%}
+			<a class="btn btn-outline-secondary" href="{{ request.path }}">Reset a tag</a>
+		{% endif %}
+	</div>
 </div>
 {% for entry in blog_entries %}
 <section class='container-md'>
@@ -16,7 +27,7 @@
     <ul style='list-style-type: none'>
         {% for tag in entry.tags.all%}
         <li style='display: inline' >
-            <a href='{{request.path}}?tag={{tag}}'><span class='badge badge-primary badge rounded-pill bg-primary'>{{tag}}</span></a>
+            <a href='{{request.path}}?tag={{tag}}'><span class='badge badge-primary rounded-pill bg-primary'>{{tag}}</span></a>
         </li>
         {% endfor %}
     </ul>

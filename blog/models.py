@@ -1,4 +1,5 @@
 # Wagtail
+from taggit.models import Tag
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import Page
@@ -32,6 +33,8 @@ class BlogPage(Page):
         tag = request.GET.get("tag")
         if tag:
             blog_entries = blog_entries.filter(tags__name=tag)
-
+        all_tags = Tag.objects.all()
         context["blog_entries"] = blog_entries
+        context["tags"] = all_tags
+        context["tag"] = tag
         return context

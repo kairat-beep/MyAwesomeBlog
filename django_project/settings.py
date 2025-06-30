@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 import netifaces
 from decouple import config
@@ -107,7 +108,8 @@ SILKY_AUTHORISATION = True  # User must have permissions
 
 
 AXES_FAILURE_LIMIT = 3  # Default: 3 failed attempts before blocking
-AXES_COOLOFF_TIME = 1  # Time in hours to wait before retrying
+AXES_COOLOFF_TIME = timedelta(minutes=2)  # Time to wait before retrying
+AXES_RESET_ON_SUCCESS = True
 
 AUTHENTICATION_BACKENDS = [
     "axes.backends.AxesStandaloneBackend",

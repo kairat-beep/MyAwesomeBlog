@@ -1,4 +1,5 @@
 # Wagtail
+from django.core.paginator import Paginator
 from taggit.models import Tag
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
@@ -34,7 +35,9 @@ class BlogPage(Page):
         if tag:
             blog_entries = blog_entries.filter(tags__name=tag)
         all_tags = Tag.objects.all()
-        context["blog_entries"] = blog_entries
+        paginator = Paginator(blog_entries, per_page=15)
+
+        context["page"] = paginator.get_page(request.GET.get("page"))
         context["tags"] = all_tags
         context["tag"] = tag
         return context

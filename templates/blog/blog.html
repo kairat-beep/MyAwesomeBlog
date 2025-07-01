@@ -20,7 +20,7 @@
 		{% endif %}
 	</div>
 </div>
-{% for entry in blog_entries %}
+{% for entry in page%}
 <section class='container-md'>
     <h2><a href="{% pageurl entry %}">{{ entry.title }}</a></h2>
     {{ entry.TLTR|richtext }}
@@ -33,5 +33,17 @@
     </ul>
 </section>
 {% endfor %}
-
+<nav aria-label="Page navigation" class="flex">
+	<ul class="pagination">
+	{% if page.has_previous %}
+	    <li class="page-item"><a class="page-link" href="?page={{page.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}">Previous</a></li>
+	{% endif%}
+	<li class="page-item page-link active disabled">
+			{{page.number}} of {{page.paginator.num_pages}}
+	</li>
+	{% if page.has_next %}
+	    <li class="page-item"><a class="page-link" href="?page={{page.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}">Next</a></li>
+	{% endif%}
+  </ul>
+</nav>
 {% endblock %}

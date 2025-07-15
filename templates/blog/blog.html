@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
-
+{% load cache %}
 {% block content %}
 {% load wagtailcore_tags %}
+{% cache 60 "blogpagination" tag|default:"no-tag" page.number %}
 <div class="container mt-5">
 	<h1 class="display-6 ">Blog Archive </h1>
 	<div> 
@@ -46,4 +47,5 @@
 	{% endif%}
   </ul>
 </nav>
+{% endcache %}
 {% endblock %}

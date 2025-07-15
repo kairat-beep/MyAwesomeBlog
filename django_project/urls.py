@@ -35,7 +35,7 @@ urlpatterns = [
     path("admin-blog/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("blog/", include(wagtail_urls)),
-    path("contact/", contact_views.as_view(), name="contact"),
+    path("contact", contact_views.as_view(), name="contact"),
     path("contact/thanks", TV.as_view(template_name="contact/thanks.html")),
     path("cookies", TV.as_view(template_name="cookies.html")),
 ]
